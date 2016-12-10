@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description>Database labels</description>
+		<type>database</type>
+		<csh_table></csh_table>
+		<fileId>EXT:cyberpeace/Ressources/Private/Language/locallang_db.xml</fileId>
+		<labelContext type="array">
+		</labelContext>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tx_cyberpeace_iplist">CyberPeace IPs</label>
+			<label index="tx_cyberpeace_iplist.ipaddr">IP address:</label>
+			<label index="tx_cyberpeace_iplist.crdate">Added:</label>
+			<label index="tx_cyberpeace_iplist.tstamp">Last access:</label>
+			<label index="tx_cyberpeace_iplist.tstampunblock">Blocked until:</label>
+			<label index="tx_cyberpeace_iplist.recurrence">Blocking recurrence:</label>
+			<label index="tx_cyberpeace_iplist.blockfe">block frontend:</label>
+			<label index="tx_cyberpeace_iplist.blockhtaccess">block in .htaccess:</label>
+			<label index="tx_cyberpeace_iplist.blockforever">block forever:</label>
+			<label index="tx_cyberpeace_iplist.comment">Comment:</label>
+			<label index="tx_cyberpeace_iplist.lasturl">Last url:</label>
+			<label index="tx_cyberpeace_iplist.accesscount">Accesscount:</label>
+			<label index="tx_cyberpeace_iplist.abuseiplasttstamp">abuseipdb.com last timestamp:</label>
+			<label index="tx_cyberpeace_iplist.category">abuseipdb.com categories: https://www.abuseipdb.com/categories</label>
+			<label index="tx_cyberpeace_iplist.isocode">abuseipdb.com Isocode:</label>
+			<label index="tx_cyberpeace_iplist.country">abuseipdb.com Country:</label>
+			<label index="tx_cyberpeace_iplist.blockingorigin">Origin of blocking:</label>
+			<label index="tx_cyberpeace_iplist.crdate">Logtime:</label>
+			<label index="tx_cyberpeace_log">CyberPeace Log</label>
+			<label index="tx_cyberpeace_log.crdate">Log time:</label>			
+			<label index="tx_cyberpeace_log.totalips">Total IPs:</label>
+			<label index="tx_cyberpeace_log.allowedips">Allowed IPs:</label>
+			<label index="tx_cyberpeace_log.allowedcrawlers">Allowed crawlers:</label>
+			<label index="tx_cyberpeace_log.unblockedwaitforrecheck">Unblocked IPs waiting for recheck:</label>
+			<label index="tx_cyberpeace_log.blockedcrawlers">Blocked crawlers:</label>
+			<label index="tx_cyberpeace_log.blockedbylocalbl">Blocked by local IP blacklist:</label>
+			<label index="tx_cyberpeace_log.blockedbyimportedbl">Blocked by imported IP blacklist:</label>
+			<label index="tx_cyberpeace_log.blockedbyabuseipdb">Blocked by abuseipdb.com:</label>
+			<label index="tx_cyberpeace_log.blockedbysyslog">Blocked by syslog:</label>
+			<label index="tx_cyberpeace_log.counthtaccess">Count IPs in .htaccess:</label>
+			<label index="tx_cyberpeace_log.logcomment">Comment:</label>
+		</languageKey>
+	</data>
+	<orig_hash type="array">
+	</orig_hash>
+	<orig_text type="array">
+	</orig_text>
+</T3locallang>

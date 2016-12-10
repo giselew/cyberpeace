@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description>Additional CSH labels</description>
+		<type>CSH</type>
+		<csh_table>tx_cyberpeace_log</csh_table>
+		<fileId>EXT:cyberpeace/Resources/Private/Language/locallang_log_csh.xml</fileId>
+		<labelContext type="array">
+		</labelContext>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="totalips.description">Total number of IPs</label>
+			<label index="totalips.details">Total number of IPs found in the IP list at log time</label>
+			<label index="allowedips.description">Allowed IPs</label>
+			<label index="allowedips.details">Allowed IPs are all IPs with blockfe+blockhtaccess+blockforever=0. None of the blockin flags is set to 1</label>
+			<label index="allowedcrawlers.description">Allowed crawlers</label>
+			<label index="allowedcrawlers.details">Among the Allowed IPs these are the IPs with pattern "crawler" in the comment</label>
+			<label index="blockedcrawlers.description">Blocked crawlers</label>
+			<label index="blockedcrawlers.details">When blockhtaccess+blockforever>0 and blocking origin is "crawler blocklist", then the IP counts into the number of blocked crawlers</label>
+			<label index="blockedbylocalbl.description">Blocked by local IP block list</label>
+			<label index="blockedbylocalbl.details">IPs found in ext:toctoc_comments local IP block list are shown with this number</label>
+			<label index="blockedbyimportedbl.description">Blocked by imported IP block list</label>
+			<label index="blockedbyimportedbl.details">IPs found in ext:toctoc_comments imported IP block list (spamhaus.org) are shown with this number</label>
+			<label index="blockedbyabuseipdb.description">Blocked by abuseipdb.com</label>
+			<label index="blockedbyabuseipdb.details">Total number of IPs because they are present in the abuseipdb.com database</label>
+			<label index="blockedbysyslog.description">Blocked by TYPO3 syslog</label>
+			<label index="blockedbysyslog.details">Number of IPs blocked because they were found in the syslog and caused errors matching to a pattern defined in TypoScript-Setup-option "blockBySysLog.identificationList"</label>
+			<label index="counthtaccess.description">Number of IPs blocked by .htaccess</label>
+			<label index="counthtaccess.details">IPs blocked by .htaccess have field blockhtaccess=1. They are maintained in .htaccess in an interval which is defined in TypoScript-option recheckHtaccessForUnblockAfterMinutes</label>
+			<label index="unblockedwaitforrecheck.description">Formerly blocked IPs</label>
+			<label index="unblockedwaitforrecheck.details">Formerly blocked IPs are allowed IPs, but will recheck immediately when they come back, if recheck is successful their blockfe-flag is set back to 0</label>
+			<label index="logcomment.description">Optional comment on a log entry</label>
+			<label index="logcomment.details">Log entry comments can be added by the user, whenever this should be needed</label>
+		</languageKey>
+	</data>
+	<orig_hash type="array">
+	</orig_hash>
+	<orig_text type="array">
+	</orig_text>
+</T3locallang>

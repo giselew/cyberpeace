@@ -1,0 +1,83 @@
+plugin.tx_cyberpeace_pi1 {
+	# cat=cyberpeace //001; type=int+; label=Storage Pid: Id of the sysFolder for the CyberPeace IP-list and log data
+	storagePid =
+
+	# cat=cyberpeace //006; type=boolean; label=IP-blocking of crawlers, spiders and bots: Activate banning if IPs user-agent represents an unwanted crawler, spider or bot
+	activateBanBlockByCrawler = 1
+
+	# cat=cyberpeace //011; type=boolean; label=IP-blocking with IP-blocklist by spamhaus.org or local IP blockList: Activate banning if IP is present in blocklists of EXT:toctoc_comments
+	activateBanBlockByLocalIPBlockTables = 0
+
+	# cat=cyberpeace //016; type=boolean; label=IP-blocking with IP-blocklist by abuseipdb.com: Activate banning if IPs present in abuseipdb.com (requires API-Id)
+	activateBanBlockByAbuseipdbCom = 0  
+  
+	# cat=cyberpeace //021; type=boolean; label=IP-blocking of bad IPs found in syslog: Activate banning if IP is found in syslog and has a match with ban patterns
+	activateBanBlockBySysLog = 1  
+
+	# cat=cyberpeace //026; type=int+; label=Jailtime for blocked IPs: Days after an IP has been blocked an unblock will be allowed
+  	unblockAfterDays = 7
+  
+	# cat=cyberpeace //031; type=int+; label=Retain delay for unlocked IPs: Days after an unused unblocked IP will be deleted.
+  	deleteUnusedUnblockedIPsAfterDays = 10
+ 
+	# cat=cyberpeace //036; type=int+; label=Logtime interval: Log will be written and .htaccess will be maintained after a minimal interval of this number of minutes for IPs to unblock or delete 
+  	recheckHtaccessForUnblockAfterMinutes = 120
+   
+	# cat=cyberpeace //041; type=boolean; label=Enable Log: You can deactivate creation of log-entries in table tx_cyberpeace_log, only .htaccess will be maintained 
+  	writeLogOnrecheckhtaccess = 1
+     
+	# cat=cyberpeace //046; type=int+; label=Log Maintenance: During maintenance of .htaccess old log-entries in table tx_cyberpeace_log are deleted if they are older than this number of days 
+  	deleteOldLogAfterDays = 150
+   
+	# cat=cyberpeace //051; type=int+; label=Good IPs recheck delay: Hours after a returning good IP rechecks
+  	recheckGoodIPAfterHours = 12
+ 	
+	# cat=cyberpeace //056; type=int+; label=Good IPs drop delay: Days after last check when a good IP will drop from the database, if it is not returning to the site
+  	deleteUnusedGoodIPsAfterDays = 7
+  
+    # cat=cyberpeace //061; type=string; label=Crawlers, user agent identification pattern: Additionally to 'googlebot','yahoo','baidu','msnbot','bingbot','spider','yandex','jeevez' the following parts of the user agent identify a crawler
+    CrawlerAgentStrings = Perl,PycURL,package,curl,AU-MIC,Python,Test,Wotbox,Lipperhey,Traveler,FDiag,bot,lucid,Mining,crawl,protect,Walker,Checker,DuckDuck,LinkFinder,Ezooms,filterdb,findlinks,monitor,blast,gonzo,htdig,archiver,jobs,ips-agent,larbin,linkdex,MajesticSEO,Survey,OpenLinkProfiler,eeker,picmole,Qualidator,ReverseGet,schrein,Scooter,search,SEOkicks,sistrix,thunderstone,TinEye,Unister,Webinator,Webmaster,xovi,Yeti
+    
+    # cat=cyberpeace //066; type=string; label=Crawlers, strategy 'disallow crawlers': When activateBanBlockByCrawler=1 and allowOnlyCrawlerAgentStrings is empty, then these parts of the User Agent qualify a crawler for blocking
+    blockCrawlerAgentStrings =  Baidu,SzeNam
+    
+    # cat=cyberpeace //071; type=string; label=Crawlers, strategy 'allowed crawlers only' (recommended): When activateBanBlockByCrawler=1 then these parts of the User Agent qualify a crawler as allowed - all other crawlers are blocked (blockCrawlerAgentStrings has no more effect)
+    allowOnlyCrawlerAgentStrings =  Google,Yahoo,LinkedIn,msnbot,bingbot,Facebook,Facebot,DuckDuck,Twitter,ia_archiver 
+    
+    # cat=cyberpeace //076; type=boolean; label=Crawlers, no user-agent blocking: Clients hiding the user agent can be blocked here
+    blockIfNoUserAgent = 1
+    
+    # cat=cyberpeace //081; type=boolean; label=Local IP-blocklists, use redirect or 403?: If you want redirect using 403-HTTP-Code (access forbidden and .htaccess) set this to 1 (if set to 1, RedirectPageStatic and -Local have no more effect)
+    RedirectDenyIPBlockTables = 0
+	
+    # cat=cyberpeace //086; type=string; label=Local IP-blocklists, spamhaus.org IP-blacklist: Page (TYPO3 page-id) or URL where to redirect banned IPs from spamhaus.org IP-blocklist
+    RedirectPageStatic = http://www.hell.com/
+	
+    # cat=cyberpeace //091; type=string; label=Local IP-blocklists, local IP-blacklist: Page or URL where to redirect banned IPs (from the local IP-blocklist)
+    RedirectPageLocal = http://www.xn--hlle-5qa.de/
+    
+    # cat=cyberpeace //096; type=boolean; label=Local IP-blocklists, block IP forever: Block IPs found in local IP-blocklists forever (sets RedirectDenyIPBlockTables = 1)
+    blockIPBlockTablesForever = 0
+
+    # cat=cyberpeace //101; type=string; label=abuseipdb.com, API-Id: Your abuseipdb.com API-Id, like wf30URT04cAPIboxft4N1gV2A09CityMCNpVuwac
+    abuseipdbComAPIId =
+        
+    # cat=cyberpeace //106; type=int+; label=abuseipdb.com, checkback time: Check back this number of days for an IP on abuseipdb.com
+    abuseipdbComAPIcheckbackDays = 90
+     
+    # cat=cyberpeace //111; type=int+; label=abuseipdb.com, block IP forever after recurrent blocking: If blocking arrived recurrently the IP will be blocked forever after this number of attempts
+    blockForEverAbuseipdbComRecurrence = 3
+
+    # cat=cyberpeace //116; type=boolean; label=abuseipdb.com, block IP forever: Block IPs found in abuseipdb.com forever
+    blockAbuseipdbComForever = 0
+    
+    # cat=cyberpeace //121; type=string; label=Syslog, identification patterns: If a in syslog.details a pattern of this list is found the associated IP will be blocked
+    syslogIdentificationList = HMAC,RealURL was not able
+    
+    # cat=cyberpeace //126; type=int+; label=Syslog, check delay: Syslog will be checked after a minimal interval of this number of minutes
+    recheckSyslogAfterMinutes = 20
+    
+    # cat=cyberpeace //131; type=boolean; label=Syslog, Block IP forever: Block IPs found in syslog forever
+    blockSyslogForever = 0
+   	
+}

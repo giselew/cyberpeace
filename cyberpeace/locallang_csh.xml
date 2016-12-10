@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description>Additional CSH labels</description>
+		<type>CSH</type>
+		<csh_table>tx_cyberpeace_iplist</csh_table>
+		<fileId>EXT:cyberpeace/locallang_csh.xml</fileId>
+		<labelContext type="array">
+		</labelContext>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="ipaddr.description">IP address</label>
+			<label index="ipaddr.details">IPv4 or IPv6-address of a client</label>
+			<label index="_ipaddr.seeAlso">tx_toctoc_comments_comments:external_ref_uid</label>
+			<label index="country.description">Country of a blocked IP</label>
+			<label index="country.details">Displays the country of an IP blocked by abuseipdb.com</label>
+			<label index="_country.seeAlso">tx_cyberpeace_iplist:isocode</label>
+			<label index="isocode.description">ISO-code of a country of a blocked IP</label>
+			<label index="isocode.details">Displays the ISO-code of a the country of an IP blocked by abuseipdb.com</label>
+			<label index="category.description">Category of the blocking reason(s)</label>
+			<label index="category.details">abuseipdb.com tells you why an IP is blocked with corresponding categories:
+ID	Title	Description
+3 	Fraud Orders 	Fraudulent orders.
+4 	DDoS Attack 	Participating in distributed denial-of-service (usually part of botnet).
+9 	Open Proxy 	Open proxy, open relay, or Tor exit node.
+10 	Web Spam 	Comment/forum spam, HTTP referrer spam, or other CMS spam.
+11 	Email Spam 	Spam email content, infected attachments, phishing emails, and spoofed senders (typically via exploited host or SMTP server abuse). Note: Limit comments to only relevant information (instead of log dumps) and be sure to remove PII if you want to remain anonymous.
+14 	Port Scan 	Scanning for open ports and vulnerable services.
+18 	Brute-Force 	Credential brute-force attacks on webpage logins and services like SSH, FTP, SIP, SMTP, RDP, etc. This category is separate from DDoS attacks.
+19 	Bad Web Bot 	Webpage scraping (for email addresses, content, etc) and crawlers that do not honor robots.txt. Excessive requests and user agent spoofing can also be reported here.
+20 	Exploited Host 	Host is likely infected with malware and being used for other attacks or to host malicious content. The host owner may not be aware of the compromise. This category is often used in combination with other attack categories.
+21 	Web App Attack 	Attempts to probe for or exploit installed web applications such as a CMS like WordPress/Drupal, e-commerce solutions, forum software, phpMyAdmin and various other software plugins/solutions.
+22 	SSH 	Secure Shell (SSH) abuse. Use this category in combination with more specific categories.
+23 	IoT Targeted 	Abuse was targeted at an "Internet of Things" type device. Include information about what type of device was targeted in the comments.
+			</label>
+			<label index="abuseiplasttstamp.description">Last time entry in abuseipdb</label>
+			<label index="abuseiplasttstamp.details">This is the time, when the blocked IP was entered into the abuseipdb.com database</label>
+			<label index="blockfe.description">Block frontend</label>
+			<label index="blockfe.details">Block frontend is marked for IPs which are redirected from a local blacklist or which await new verification after they have been unblocked</label>
+			<label index="blockhtaccess.description">Block by .htaccess</label>
+			<label index="blockhtaccess.details">The IP is blocked in .htaccess with "deny all from [IP]"</label>
+			<label index="tstampunblock.description">Unblock time</label>
+			<label index="tstampunblock.details">This is the time when a blocked IP will be unblocked (or was unblocked last time)</label>
+			<label index="blockforever.description">Block forever</label>
+			<label index="blockforever.details">The IP will be blocked forever from website access. This can be the result of one of the TypoScript-options regarding blockForever, or it can be result of the recurrence option (recurrent IPs blocked by abuseipdb.com)</label>
+			<label index="recurrence.description">Blocking recurrence</label>
+			<label index="recurrence.details">Every time an IP is blocked the recurrence goes up by 1</label>
+			<label index="accesscount.description">Access count of an IP</label>
+			<label index="accesscount.details">Whenever an IP get a full check against the CyberPeace database access count goes up by 1</label>
+			<label index="lasturl.description">URL of check</label>
+			<label index="lasturl.details">When the IP is checked, this was the URL were IP was noticed. It is the entry page of the IPs visit to the website</label>
+			<label index="blockingorigin.description">Origin of blocking</label>
+			<label index="blockingorigin.details">When an IP gets blocked, then the origin of the blocking is stored</label>
+			<label index="comment.description">Comment</label>
+			<label index="comment.details">Comments are made automatically for blocked IPs, manual modifications or comments for not blocked IPs (like "the boss") are always possible</label>
+			<label index="totalips.description">Total number of IPs</label>
+			<label index="totalips.details">Total number of IPs found in the IP list at log time</label>
+			<label index="allowedips.description">Allowed IPs</label>
+			<label index="allowedips.details">Allowed IPs are all IPs with blockfe+blockhtaccess+blockforever=0. None of the blockin flags is set to 1</label>
+			<label index="allowedcrawlers.description">Allowed crawlers</label>
+			<label index="allowedcrawlers.details">Among the Allowed IPs these are the IPs with pattern "crawler" in the comment</label>
+			<label index="blockedcrawlers.description">Blocked crawlers</label>
+			<label index="blockedcrawlers.details">When blockhtaccess+blockforever>0 and blocking origin is "crawler blocklist", then the IP counts into the number of blocked crawlers</label>
+			<label index="blockedbylocalbl.description">Blocked by local IP block list</label>
+			<label index="blockedbylocalbl.details">IPs found in ext:toctoc_comments local IP block list are shown with this number</label>
+			<label index="blockedbyimportedbl.description">Blocked by imported IP block list</label>
+			<label index="blockedbyimportedbl.details">IPs found in ext:toctoc_comments imported IP block list (spamhaus.org) are shown with this number</label>
+			<label index="blockedbyabuseipdb.description">Blocked by abuseipdb.com</label>
+			<label index="blockedbyabuseipdb.details">Total number of IPs because they are present in the abuseipdb.com database</label>
+			<label index="blockedbysyslog.description">Blocked by TYPO3 syslog</label>
+			<label index="blockedbysyslog.details">Number of IPs blocked because they were found in the syslog and caused errors matching to a pattern defined in TypoScript-Setup-option "blockBySysLog.identificationList"</label>
+			<label index="counthtaccess.description">Number of IPs blocked by .htaccess</label>
+			<label index="counthtaccess.details">IPs blocked by .htaccess have field blockhtaccess=1. They are maintained in .htaccess in an interval which is defined in TypoScript-option recheckHtaccessForUnblockAfterMinutes</label>
+			<label index="unblockedwaitforrecheck.description">Formerly blocked IPs</label>
+			<label index="unblockedwaitforrecheck.details">Formerly blocked IPs are allowed IPs, but will recheck immediately when they come back, if recheck is successful their blockfe-flag is set back to 0</label>
+			<label index="logcomment.description">Optional comment on a log entry</label>
+			<label index="logcomment.details">Log entry comments can be added by the user, whenever this should be needed</label>
+		</languageKey>
+	</data>
+	<orig_hash type="array">
+	</orig_hash>
+	<orig_text type="array">
+	</orig_text>
+</T3locallang>

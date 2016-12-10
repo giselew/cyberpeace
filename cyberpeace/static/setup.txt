@@ -1,0 +1,63 @@
+includeLibs.tx_cyberpeace_pi1 = typo3conf/ext/cyberpeace/pi1/class.tx_cyberpeace_pi1.php
+plugin.tx_cyberpeace_pi1 = USER_INT
+plugin.tx_cyberpeace_pi1 {
+  storagePid = {$plugin.tx_cyberpeace_pi1.storagePid}
+  
+  activateBanBlockByCrawler = {$plugin.tx_cyberpeace_pi1.activateBanBlockByCrawler}
+  activateBanBlockByLocalIPBlockTables = {$plugin.tx_cyberpeace_pi1.activateBanBlockByLocalIPBlockTables}
+  activateBanBlockByAbuseipdbCom = {$plugin.tx_cyberpeace_pi1.activateBanBlockByAbuseipdbCom}
+  activateBanBlockBySysLog = {$plugin.tx_cyberpeace_pi1.activateBanBlockBySysLog} 
+
+  unblockAfterDays = {$plugin.tx_cyberpeace_pi1.unblockAfterDays} 
+  deleteUnusedUnblockedIPsAfterDays = {$plugin.tx_cyberpeace_pi1.deleteUnusedUnblockedIPsAfterDays}
+  
+  recheckHtaccessForUnblockAfterMinutes = {$plugin.tx_cyberpeace_pi1.recheckHtaccessForUnblockAfterMinutes} 
+  writeLogOnrecheckhtaccess = {$plugin.tx_cyberpeace_pi1.writeLogOnrecheckhtaccess} 
+  deleteOldLogAfterDays = {$plugin.tx_cyberpeace_pi1.deleteOldLogAfterDays}
+   
+  recheckGoodIPAfterHours = {$plugin.tx_cyberpeace_pi1.recheckGoodIPAfterHours} 
+  deleteUnusedGoodIPsAfterDays = {$plugin.tx_cyberpeace_pi1.deleteUnusedGoodIPsAfterDays} 
+  
+  blockByCrawler {
+    CrawlerAgentStrings = {$plugin.tx_cyberpeace_pi1.CrawlerAgentStrings}
+    blockCrawlerAgentStrings = {$plugin.tx_cyberpeace_pi1.blockCrawlerAgentStrings} 
+    allowOnlyCrawlerAgentStrings  = {$plugin.tx_cyberpeace_pi1.allowOnlyCrawlerAgentStrings} 
+    blockIfNoUserAgent  = {$plugin.tx_cyberpeace_pi1.blockIfNoUserAgent}     
+  }
+  
+  // Local IP block tables are provided by EXT:toctoc_comments which uses them to protect its commenting system (Spamhaus-blockList and free blocklist)
+  blockByLocalIPBlockTables {
+    RedirectDeny = {$plugin.tx_cyberpeace_pi1.RedirectDenyIPBlockTables}
+    RedirectPageStatic = {$plugin.tx_cyberpeace_pi1.RedirectPageStatic}
+    RedirectPageLocal = {$plugin.tx_cyberpeace_pi1.RedirectPageLocal}
+    blockForever = {$plugin.tx_cyberpeace_pi1.blockIPBlockTablesForever}
+  }
+  
+  // abuseipdb.com is a live-db for various kinds of unsolicitated IPs: You need a (free) account, commit as webmaster and get your abuseipdb.com API-Id
+  blockByAbuseipdbCom {
+    abuseipdbComAPIId = {$plugin.tx_cyberpeace_pi1.abuseipdbComAPIId}
+    abuseipdbComAPIcheckbackDays = {$plugin.tx_cyberpeace_pi1.abuseipdbComAPIcheckbackDays}
+    blockForEverRecurrence = {$plugin.tx_cyberpeace_pi1.blockForEverAbuseipdbComRecurrence}
+    blockForever = {$plugin.tx_cyberpeace_pi1.blockAbuseipdbComForever}    
+  }
+  
+  blockBySysLog {
+    // List of strings in syslog details, each of them representing an error which bans the originating IP
+    identificationList = {$plugin.tx_cyberpeace_pi1.syslogIdentificationList}
+    recheckAfterMinutes = {$plugin.tx_cyberpeace_pi1.recheckSyslogAfterMinutes}
+    blockForever = {$plugin.tx_cyberpeace_pi1.blockSyslogForever}
+  }
+   
+  // During recheck of .htaccess, consider all IPs that can unblock, regardless of last runtime of the .htaccess-check (more time consuming but useful if problems occured)
+  recheckHtaccessUnblockAll = 0
+  	
+  // Do not check IPs associated with DevIPMask
+  noCheckDevIPMask = 1
+  
+  // You can test how the system reacts on a given IP for test purposes
+  testip =
+  
+  // You can test how the system reacts on a given user agent for test purposes (Crawler)
+  testuseragent =
+    
+}
