@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2015 - 2016 Gisele Wendl <gisele.wendl@toctoc.ch>
+*  (c) 2015 - 2017 Gisele Wendl <gisele.wendl@toctoc.ch>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -29,19 +29,19 @@
  *   72: class tx_cyberpeace_pi1 extends tslib_pibase
  *  121:     public function checkDataSubmission()
  *  132:     public function main($content, $conf = array())
- * 1061:     private function syslogCheckItem($conf, $confstoragePid, $syslogIP, $identstr)
- * 1173:     private function isGoodIPnoCheck($ip, $conf)
- * 1198:     private function htaccessinitialize()
- * 1235:     private function htaccessfinalize($denyarr)
- * 1250:     private function getLastURL()
- * 1279:     protected function finishblocking($conf, $ipinfo, $ip, $canUnblock, $finishblockingforabuseipdb = 0)
- * 1396:     private function checkhtaccessandblock($ip, $checkhtaccess = TRUE)
- * 1440:     private function checkIPabuse($conf, $ipaddr)
- * 1510:     private function getRequestIP()
- * 1522:     private function getBlacklistForIP($ip)
- * 1539:     private function checkTableBLs($ipaddr)
- * 1550:     private function checkLocalBL($ipaddr)
- * 1589:     private function checkStaticBL($ipaddr)
+ * 1123:     private function syslogCheckItem($conf, $confstoragePid, $syslogIP, $tstamlastattempt, $firstsysdetails, $totalattempts)
+ * 1231:     private function isGoodIPnoCheck($ip, $conf)
+ * 1256:     private function htaccessinitialize()
+ * 1293:     private function htaccessfinalize($denyarr)
+ * 1308:     private function getLastURL()
+ * 1337:     protected function finishblocking($conf, $ipinfo, $ip, $canUnblock, $finishblockingforabuseipdb = 0)
+ * 1456:     private function checkhtaccessandblock($ip, $checkhtaccess = TRUE)
+ * 1500:     private function checkIPabuse($conf, $ipaddr)
+ * 1570:     private function getRequestIP()
+ * 1582:     private function getBlacklistForIP($ip)
+ * 1599:     private function checkTableBLs($ipaddr)
+ * 1610:     private function checkLocalBL($ipaddr)
+ * 1649:     private function checkStaticBL($ipaddr)
  *
  * TOTAL FUNCTIONS: 15
  * (This index is automatically created/updated by the extension "extdeveval")
@@ -314,13 +314,13 @@ class tx_cyberpeace_pi1 extends tslib_pibase {
 							} else {
 								$identstr = $res[0]['comment'];
 							}
-							
+
 						}
-						
+
 					} else {
 						$identstr = $res[0]['comment'];
 					}
-					
+
 				}
 
 				$ipinfo = array(
@@ -342,7 +342,7 @@ class tx_cyberpeace_pi1 extends tslib_pibase {
 						'category' => $res[0]['category'],
 						'country' => $res[0]['country'],
 						'abuseiplasttstamp' => $res[0]['abuseiplasttstamp'],
-						
+
 						'blockingorigin'  => $res[0]['blockingorigin'],
 				);
 
@@ -436,7 +436,7 @@ class tx_cyberpeace_pi1 extends tslib_pibase {
 						'isocode' => '',
 						'category' => '',
 						'country' => '',
-						'abuseiplasttstamp' => 0,						
+						'abuseiplasttstamp' => 0,
 						'blockingorigin' => $blockingorigin,
 						);
 
@@ -459,20 +459,20 @@ class tx_cyberpeace_pi1 extends tslib_pibase {
 								} else {
 									$identstr = $res[0]['comment'];
 								}
-								
+
 							}
-							
+
 						} else {
 							if (str_replace('abuseipdb', '', $res[0]['comment']) == $res[0]['comment']) {
 								$identstr = $res[0]['comment'];
 							}
-							
+
 						}
-						
+
 					}
-					
+
 					$newcomment = '';
-					
+
 					if (str_replace($comment, '', $res[0]['comment']) == $res[0]['comment']){
 						$newcomment = $comment;
 					}
@@ -481,19 +481,19 @@ class tx_cyberpeace_pi1 extends tslib_pibase {
 						if (str_replace($identstr, '', $res[0]['comment']) == $res[0]['comment']) {
 							$newcomment = trim($identstr) . "\n" . $comment;
 						}
-												
+
 					}
-					
+
 					if ($newcomment != '') {
 						$newcomment = trim($newcomment) . "\n" . $res[0]['comment'];
 					} else {
 						$newcomment = $res[0]['comment'];
 					}
-										
+
 					if ($redirect == FALSE) {
 						$blockingorigin=$res[0]['blockingorigin'];
 					}
-					
+
 					$ipinfo = array(
 							'uid' => $res[0]['uid'],
 							'pid' => $res[0]['pid'],
@@ -512,7 +512,7 @@ class tx_cyberpeace_pi1 extends tslib_pibase {
 							'isocode' => $res[0]['isocode'],
 							'category' => $res[0]['category'],
 							'country' => $res[0]['country'],
-							'abuseiplasttstamp' => $res[0]['abuseiplasttstamp'],							
+							'abuseiplasttstamp' => $res[0]['abuseiplasttstamp'],
 							'blockingorigin'  => $blockingorigin,
 							);
 
@@ -564,12 +564,12 @@ class tx_cyberpeace_pi1 extends tslib_pibase {
 					if ($ipinfo['blockfe'] == 1) {
 						$needsupdate = TRUE;
 					}
-					
+
 					if ($ipinfo['blockforever'] == 0) {
 						$ipinfo['blockfe'] = 0;
 						$ipinfo['blockhtaccess'] = 0;
 					}
-									
+
 				}
 
 				if (($ipinfo['blockfe'] == 0) && ($ipinfo['blockhtaccess'] == 0)) {
@@ -577,7 +577,7 @@ class tx_cyberpeace_pi1 extends tslib_pibase {
 					if (($ipinfo['tstamp'] + ($conf['recheckGoodIPAfterHours']*3600)) <= time()) {
 						$docheckAbuseipdb = TRUE;
 					}
-					
+
 				}
 
 				if ($GLOBALS['TSFE']->id != $redirectPage) {
@@ -685,7 +685,7 @@ class tx_cyberpeace_pi1 extends tslib_pibase {
 			if (intval($conf['noCheckDevIPMask']) == 1) {
 				$conf['activateBanBlockByAbuseipdbCom'] = 0;
 			}
-			
+
 		}
 
 		if (intval($conf['activateBanBlockByAbuseipdbCom']) == 1) {
@@ -716,13 +716,13 @@ class tx_cyberpeace_pi1 extends tslib_pibase {
 						'category' => '',
 						'country' => '',
 						'abuseiplasttstamp' => 0,
-						
+
 						'blockingorigin'  => '',
 				);
 
 				$res = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('uid,pid,ipaddr,deleted,blockfe,blockhtaccess,blockforever,crdate,tstamp,tstampunblock,recurrence,comment,
 						accesscount,lasturl,isocode,category,country,abuseiplasttstamp',
-						'tx_cyberpeace_iplist', 'ipaddr="'.$ip.'"', '', '');
+						'tx_cyberpeace_iplist', 'ipaddr="'.$ip.'" AND deleted=0', '', '');
 
 				$num_rows = count($res);
 
@@ -746,7 +746,7 @@ class tx_cyberpeace_pi1 extends tslib_pibase {
 							'category' => $res[0]['category'],
 							'country' => $res[0]['country'],
 							'abuseiplasttstamp' => $res[0]['abuseiplasttstamp'],
-							
+
 							'blockingorigin'  => $res[0]['blockingorigin'],
 					);
 
@@ -795,12 +795,12 @@ class tx_cyberpeace_pi1 extends tslib_pibase {
 					isoCode PL,
 					category [15] (array),
 					created: Wed, 19 Oct 2016 18:44:07 +0000*/
+					$listed = FALSE;
 
 					if (count($commentarr) == 0) {
 						// not listed
 						$ipinfo['comment'] = $identstr;
 						if ($ipinfo['blockforever'] == 0) {
-							//$ipinfo['blockfe'] = 0;
 							$ipinfo['blockhtaccess'] = 0;
 							$ipinfo['blockingorigin']  = '';
 						}
@@ -809,42 +809,67 @@ class tx_cyberpeace_pi1 extends tslib_pibase {
 						// listed
 						if (array_key_exists('created', $commentarr)) {
 							$strlastentry = $commentarr['created'];
-							$timesin  = '1';
-							$ipinfoisocode = $commentarr['isoCode'];
-							$ipinfocountry = $commentarr['country'];
-							if (is_array($commentarr['category'])) {
-								$ipinfocategory = implode(', ', $commentarr['category']);
-							} else {
-								$ipinfocategory = trim($commentarr['category']);
-							}
+							If (trim($strlastentry) == 'C') {
+								// not listed
+								$ipinfo['comment'] = $identstr;
+								if ($ipinfo['blockforever'] == 0) {
+									$ipinfo['blockhtaccess'] = 0;
+									$ipinfo['blockingorigin']  = '';
+								}
 
-							$ipinfoabuseiplasttstamp = time($commentarr['created']);
+							} else {
+								$listed = TRUE;
+								$timesin  = '1';
+								$ipinfoisocode = $commentarr['isoCode'];
+								$ipinfocountry = $commentarr['country'];
+								if (is_array($commentarr['category'])) {
+									$ipinfocategory = implode(', ', $commentarr['category']);
+								} else {
+									$ipinfocategory = trim($commentarr['category']);
+								}
+
+								$ipinfoabuseiplasttstamp = time($commentarr['created']);
+							}
 						} else {
 							$strlastentry = $commentarr[0]['created'];
-							$timesin  = count($commentarr);
-							$ipinfoisocode = $commentarr[0]['isoCode'];
-							$ipinfocountry = $commentarr[0]['country'];
-							if (is_array($commentarr[0]['category'])) {
-								$ipinfocategory = implode(', ', $commentarr[0]['category']);
+							If (trim($strlastentry) == 'C') {
+								// not listed
+								$ipinfo['comment'] = $identstr;
+								if ($ipinfo['blockforever'] == 0) {
+									$ipinfo['blockhtaccess'] = 0;
+									$ipinfo['blockingorigin']  = '';
+								}
 							} else {
-								$ipinfocategory = trim($commentarr[0]['category']);
+								$listed = TRUE;
+								$timesin  = count($commentarr);
+								$ipinfoisocode = $commentarr[0]['isoCode'];
+								$ipinfocountry = $commentarr[0]['country'];
+								if (is_array($commentarr[0]['category'])) {
+									$ipinfocategory = implode(', ', $commentarr[0]['category']);
+								} else {
+									$ipinfocategory = trim($commentarr[0]['category']);
+								}
+
+								$ipinfoabuseiplasttstamp = time($commentarr[0]['created']);
 							}
 
-							$ipinfoabuseiplasttstamp = time($commentarr[0]['created']);
 						}
 
-						$comment = $identstr . 'IP ' . $ip . ' found ' . $timesin . ' time(s) in abuseipdb.com' . "\n" . 'last entry: ' .
-								$strlastentry;
-						$ipinfo['blockingorigin'] = 'abuseipdb.com';
-						$ipinfo['comment'] = $comment;
-						$ipinfo['isocode'] = $ipinfoisocode;
-						$ipinfo['country'] = $ipinfocountry;
-						$ipinfo['category'] = $ipinfocategory;
-						$ipinfo['abuseiplasttstamp'] = $ipinfoabuseiplasttstamp;
-						$ipinfo['blockfe'] = 1;
-						$ipinfo['blockhtaccess'] = 1;
-						$ipinfo['blockforever'] = intval($conf['blockByAbuseipdbCom.']['blockForever']);
-						$canUnblock = FALSE;
+						if ($listed == TRUE) {
+							$comment = $identstr . 'IP ' . $ip . ' found ' . $timesin . ' time(s) in abuseipdb.com' . "\n" . 'last entry: ' .
+									$strlastentry;
+							$ipinfo['blockingorigin'] = 'abuseipdb.com';
+							$ipinfo['comment'] = $comment;
+							$ipinfo['isocode'] = $ipinfoisocode;
+							$ipinfo['country'] = $ipinfocountry;
+							$ipinfo['category'] = $ipinfocategory;
+							$ipinfo['abuseiplasttstamp'] = $ipinfoabuseiplasttstamp;
+							$ipinfo['blockfe'] = 1;
+							$ipinfo['blockhtaccess'] = 1;
+							$ipinfo['blockforever'] = intval($conf['blockByAbuseipdbCom.']['blockForever']);
+							$canUnblock = FALSE;
+						}
+
 					}
 
 					$this->finishblocking ($conf, $ipinfo, $ip, $canUnblock, 1);
@@ -910,7 +935,7 @@ class tx_cyberpeace_pi1 extends tslib_pibase {
 						while ($rowsmerged = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($resultmerged)) {
 							if ($syslogIP != $rowsmerged['IP']) {
 								if ($syslogIP != '') {
-									
+
 									$this->syslogCheckItem ($conf, $confstoragePid, $syslogIP, $tstamlastattempt, $firstsysdetails, $totalattempts);
 								}
 
@@ -1027,7 +1052,7 @@ class tx_cyberpeace_pi1 extends tslib_pibase {
 						blockforever = 0 AND tstampunblock != 0 AND tstampunblock < ' . $checkdeltstamp . '');
 		// deleteDeleted
 				$GLOBALS['TYPO3_DB']->sql_query('DELETE FROM tx_cyberpeace_iplist WHERE deleted = 1');
-				
+
 		// Log
 				if (intval($conf['writeLogOnrecheckhtaccess']) == 1) {
 					$sqllog = 'SELECT COUNT(*) AS totalips,
@@ -1091,10 +1116,12 @@ class tx_cyberpeace_pi1 extends tslib_pibase {
 	 * @param	[type]		$confstoragePid: ...
 	 * @param	[type]		$syslogIP: ...
 	 * @param	[type]		$identstr: ...
+	 * @param	[type]		$firstsysdetails: ...
+	 * @param	[type]		$totalattempts: ...
 	 * @return	[type]		...
 	 */
 	private function syslogCheckItem($conf, $confstoragePid, $syslogIP, $tstamlastattempt, $firstsysdetails, $totalattempts) {
-		
+
 		$ipinfo = array(
 				'uid' => 0,
 				'pid' => $confstoragePid,
@@ -1113,7 +1140,7 @@ class tx_cyberpeace_pi1 extends tslib_pibase {
 				'isocode' => '',
 				'category' => '',
 				'country' => '',
-				'abuseiplasttstamp' => 0,				
+				'abuseiplasttstamp' => 0,
 				'blockingorigin'  => 'syslog'
 		);
 
@@ -1147,7 +1174,7 @@ class tx_cyberpeace_pi1 extends tslib_pibase {
 					'isocode' => $res[0]['isocode'],
 					'category' => $res[0]['category'],
 					'country' => $res[0]['country'],
-					'abuseiplasttstamp' => $res[0]['abuseiplasttstamp'],					
+					'abuseiplasttstamp' => $res[0]['abuseiplasttstamp'],
 					'blockingorigin' => 'syslog',
 			);
 
@@ -1304,7 +1331,7 @@ class tx_cyberpeace_pi1 extends tslib_pibase {
 	 * @param	array		$ipinfo: ...
 	 * @param	string		$ip: ...
 	 * @param	boolean		$canUnblock: ...
-	 * @param	int			$finishblockingforabuseipdb: ...
+	 * @param	int		$finishblockingforabuseipdb: ...
 	 * @return	void		(sets $this->blockIP)
 	 */
 	protected function finishblocking($conf, $ipinfo, $ip, $canUnblock, $finishblockingforabuseipdb = 0) {
@@ -1313,8 +1340,8 @@ class tx_cyberpeace_pi1 extends tslib_pibase {
 
 			$ipinfo['tstampunblock'] = time() +  ($conf['unblockAfterDays']*3600*24);
 			$canUnblock = FALSE;
-		} 
-		
+		}
+
 		if (($ipinfo['blockfe']+$ipinfo['blockhtaccess']+$ipinfo['blockforever']) == 0) {
 			$ipinfo['tstampunblock'] = 0;
 		}

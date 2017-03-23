@@ -1,3 +1,7 @@
 2016-12-10  Gisèle Wendl  <gisele.wendl@toctoc.ch>
 	* Initial release, version 1.0.0
 	* All is new :-)
+2017-03-23  Gisèle Wendl  <gisele.wendl@toctoc.ch>
+	* Version 1.0.1
+	* abuseipdb returns on (some) errors a reply which caused the IP to be blocked, fixed now
+	* Note for the abuseipdb.com-API: the system components curL and NSS need to be installed and updated to the latest version

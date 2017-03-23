@@ -11,6 +11,8 @@
 Block by abuseipdb.com
 ----------------------
 
+**Important:** Use of the abuseipdb.com API requires not only that curl is installed, it's necessary that **curl** and **nss** are installed and **both updated to the newest version**
+
 In section blockByAbuseipdbCom, you set up options regarding blocking with the realtime database by `abuseipdb.com <https://www.abuseipdb.com/>`__
 
 **Note:** options in the constants have not always the same name as the options in setup.

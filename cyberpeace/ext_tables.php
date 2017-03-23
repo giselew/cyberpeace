@@ -17,7 +17,6 @@ if (version_compare(TYPO3_version, '6.2', '<')) {
 					'label'     => 'ipaddr',
 					'tstamp'    => 'tstamp',
 					'crdate'    => 'crdate',
-					'cruser_id' => 'cruser_id',
 					'delete' => 'deleted',
 					'default_sortby' => 'ORDER BY tstamp DESC',
 					'searchFields' => 'comment,ipaddr,category',

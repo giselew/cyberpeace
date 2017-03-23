@@ -21,7 +21,6 @@ $tx_cyberpeace_iplist = array(
 		'label'     => 'ipaddr',
 		'tstamp'    => 'tstamp',
 		'crdate'    => 'crdate',
-		'cruser_id' => 'cruser_id',
 		'delete' => 'deleted',
 		'default_sortby' => 'ORDER BY tstamp DESC',
 		'iconfile'  => $iconfilepath . 'Resources/Public/Icons/icon_tx_cyberpeace_iplist.png',
