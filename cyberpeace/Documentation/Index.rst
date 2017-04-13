@@ -31,7 +31,7 @@ EXT: CyberPeace
         forAdmins, forAdvanced, Ban IPs from website access
 
     :Copyright:
-        2016
+        2016-2017
 
     :Author:
         Gisèle Wendl

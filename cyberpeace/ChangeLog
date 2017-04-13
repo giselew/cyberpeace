@@ -5,3 +5,8 @@
 	* Version 1.0.1
 	* abuseipdb returns on (some) errors a reply which caused the IP to be blocked, fixed now
 	* Note for the abuseipdb.com-API: the system components curL and NSS need to be installed and updated to the latest version
+2017-04-13  Gisèle Wendl  <gisele.wendl@toctoc.ch>
+	* Version 1.0.2
+	* added "TYPO3" to defaults of allowOnlyCrawlerAgentStrings (because of ext:crawler)
+	* Compatibility with TYPO3 8.7
+	* Note for the abuseipdb.com-API: SSL is required as NSS installs along with the installation of an SSL certificate

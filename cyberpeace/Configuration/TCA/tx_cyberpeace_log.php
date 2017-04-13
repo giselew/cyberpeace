@@ -38,6 +38,7 @@ $tx_cyberpeace_log = array(
 				'eval' => 'datetime',
 				'readOnly' => 1,
 				'default' => time(),
+				'renderType' => 'inputDateTime',					
 			),
 		),
 		'totalips'  => array (

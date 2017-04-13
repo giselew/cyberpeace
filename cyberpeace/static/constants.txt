@@ -42,7 +42,7 @@ plugin.tx_cyberpeace_pi1 {
     blockCrawlerAgentStrings =  Baidu,SzeNam
     
     # cat=cyberpeace //071; type=string; label=Crawlers, strategy 'allowed crawlers only' (recommended): When activateBanBlockByCrawler=1 then these parts of the User Agent qualify a crawler as allowed - all other crawlers are blocked (blockCrawlerAgentStrings has no more effect)
-    allowOnlyCrawlerAgentStrings =  Google,Yahoo,LinkedIn,msnbot,bingbot,Facebook,Facebot,DuckDuck,Twitter,ia_archiver 
+    allowOnlyCrawlerAgentStrings =  Google,Yahoo,TYPO3,LinkedIn,msnbot,bingbot,Facebook,Facebot,DuckDuck,Twitter,ia_archiver 
     
     # cat=cyberpeace //076; type=boolean; label=Crawlers, no user-agent blocking: Clients hiding the user agent can be blocked here
     blockIfNoUserAgent = 1

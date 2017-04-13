@@ -72,6 +72,7 @@ $tx_cyberpeace_iplist = array(
 				'eval' => 'datetime',
 				'readOnly' => 1,
 				'default' => time(),
+				'renderType' => 'inputDateTime',
 			),
 		),
 		'tstamp' => array (
@@ -82,6 +83,7 @@ $tx_cyberpeace_iplist = array(
 				'eval' => 'datetime',
 				'readOnly' => 1,
 				'default' => time(),
+				'renderType' => 'inputDateTime',
 			),
 		),
 		'tstampunblock' => array (
@@ -91,6 +93,7 @@ $tx_cyberpeace_iplist = array(
 				'type' => 'input',
 				'eval' => 'datetime',
 				'default' => time(),
+				'renderType' => 'inputDateTime',
 			),
 				),
 		'recurrence' => array (
@@ -174,6 +177,7 @@ $tx_cyberpeace_iplist = array(
 				'type' => 'input',
 				'eval' => 'datetime',
 				'default' => 0,
+				'renderType' => 'inputDateTime',
 			)
 		),
 		
